@@ -5,20 +5,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Movie {
+public class Theater {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
 
-    public Movie() {
+    public Theater() {
     }
 
-    public Movie(String name) {
+    public Theater(String name) {
         this(null, name);
     }
 
-    public Movie(Long id, String name) {
+    public Theater(Long id, String name) {
         this.id = id;
         this.name = name;
     }
