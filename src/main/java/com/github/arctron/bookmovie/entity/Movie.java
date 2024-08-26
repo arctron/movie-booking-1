@@ -12,6 +12,9 @@ public class Movie {
     private Long id;
     private String name;
 
+    public Movie() {
+    }
+
     public Movie(String name) {
         this(null, name);
     }
