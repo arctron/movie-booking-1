@@ -1,4 +1,4 @@
-package com.github.arctron.bookmovie.entities;
+package com.github.arctron.bookmovie.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
