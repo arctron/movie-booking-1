@@ -1,94 +1,52 @@
 package com.github.arctron.bookmovie.entity;
 
-import com.github.arctron.bookmovie.constants.Day;
-import com.github.arctron.bookmovie.constants.DaySlot;
+import org.springframework.data.domain.Persistable;
+import org.springframework.lang.Nullable;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 
-// @Entity
-public class Booking {
-    @Id
-    @GeneratedValue
-    private Long id;
-    private Movie movie;
-    private Seat seat;
-    private Hall hall;
-    private Theater theater;
-    private DaySlot daySlot;
-    private Day day;
+@Entity
+public class Booking implements Persistable<BookingId> {
+    @EmbeddedId
+    private BookingId bookingId;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Customer customer;
 
     public Booking() {
     }
 
-    public Booking(Movie movie, Seat seat, Hall hall, Theater theater, DaySlot daySlot, Day day) {
-        this(null, movie, seat, hall, theater, daySlot, day);
+    public Booking(BookingId bookingId, Customer customer) {
+        this.bookingId = bookingId;
+        this.customer = customer;
     }
 
-    public Booking(Long id, Movie movie, Seat seat, Hall hall, Theater theater, DaySlot daySlot, Day day) {
-        this.id = id;
-        this.movie = movie;
-        this.seat = seat;
-        this.hall = hall;
-        this.theater = theater;
-        this.daySlot = daySlot;
-        this.day = day;
+    public BookingId getBookingId() {
+        return bookingId;
     }
 
-    public Long getId() {
-        return id;
+    public void setBookingId(BookingId bookingId) {
+        this.bookingId = bookingId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    @Override
+    @Nullable
+    public BookingId getId() {
+        return getBookingId();
     }
 
-    public Seat getSeat() {
-        return seat;
-    }
-
-    public void setSeat(Seat seat) {
-        this.seat = seat;
-    }
-
-    public Hall getHall() {
-        return hall;
-    }
-
-    public void setHall(Hall hall) {
-        this.hall = hall;
-    }
-
-    public Theater getTheater() {
-        return theater;
-    }
-
-    public void setTheater(Theater theater) {
-        this.theater = theater;
-    }
-
-    public DaySlot getDaySlot() {
-        return daySlot;
-    }
-
-    public void setDaySlot(DaySlot daySlot) {
-        this.daySlot = daySlot;
-    }
-
-    public Day getDay() {
-        return day;
-    }
-
-    public void setDay(Day day) {
-        this.day = day;
+    @Override
+    public boolean isNew() {
+        return true;
     }
 }
