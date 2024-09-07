@@ -14,8 +14,8 @@ public class Show {
     @Id
     @GeneratedValue
     private Long id;
-    private java.time.LocalDate date;
-    private java.time.LocalTime startTime;
+    private LocalDate date;
+    private LocalTime startTime;
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Hall hall;
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -44,19 +44,19 @@ public class Show {
         this.id = id;
     }
 
-    public java.time.LocalDate getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(java.time.LocalDate date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public java.time.LocalTime getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(java.time.LocalTime startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
